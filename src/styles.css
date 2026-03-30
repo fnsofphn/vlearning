@@ -882,3 +882,177 @@ button {
     grid-template-columns: 1fr;
   }
 }
+
+.programs-view {
+  gap: 18px;
+}
+
+.programs-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.9fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.programs-hero-copy,
+.program-spotlight-card {
+  padding: 24px 26px;
+  border-radius: 24px;
+  box-shadow: var(--shadow-md);
+}
+
+.programs-hero-copy {
+  background:
+    radial-gradient(circle at top right, rgba(201, 168, 76, 0.16), transparent 14rem),
+    linear-gradient(135deg, var(--navy), #213964 62%, #365283);
+}
+
+.programs-title {
+  max-width: 13ch;
+}
+
+.program-spotlight-card {
+  border: 1px solid rgba(201, 168, 76, 0.28);
+  background: linear-gradient(180deg, #fffdf9, #f7efe2);
+}
+
+.program-spotlight-card h3,
+.program-portfolio-card h3,
+.cohort-card-pro h3,
+.assignment-card-pro h3 {
+  margin: 14px 0 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.35rem;
+  color: var(--navy);
+}
+
+.program-spotlight-card p,
+.program-portfolio-card p,
+.assignment-card-pro p {
+  margin: 10px 0 0;
+  color: var(--ink-soft);
+  line-height: 1.65;
+}
+
+.program-spotlight-top,
+.program-portfolio-top,
+.cohort-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.spotlight-code,
+.program-badge,
+.spotlight-phase {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.spotlight-code {
+  background: rgba(27, 42, 74, 0.08);
+  color: var(--navy);
+}
+
+.spotlight-phase {
+  background: rgba(164, 16, 52, 0.1);
+  color: var(--crimson-dark);
+}
+
+.program-badge.is-active {
+  background: rgba(26, 104, 64, 0.1);
+  color: var(--success);
+}
+
+.program-badge.is-draft,
+.program-badge.is-paused {
+  background: rgba(201, 168, 76, 0.14);
+  color: #8b6d18;
+}
+
+.spotlight-meta,
+.program-portfolio-meta,
+.cohort-line {
+  margin-top: 8px;
+  color: var(--ink-soft);
+}
+
+.spotlight-next,
+.cohort-phase {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(27, 42, 74, 0.06);
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.program-stat-grid,
+.assignment-grid-pro {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.program-stat-card,
+.assignment-card-pro,
+.program-portfolio-card,
+.cohort-card-pro {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: linear-gradient(180deg, var(--white), #faf6ef);
+  box-shadow: var(--shadow-sm);
+}
+
+.program-stat-value {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 2.2rem;
+  color: var(--navy);
+}
+
+.program-stat-label {
+  margin-top: 6px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.program-stat-note {
+  margin-top: 8px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+.program-card-grid,
+.cohort-stack {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.assignment-role {
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.program-readiness-panel {
+  background:
+    radial-gradient(circle at top right, rgba(201, 168, 76, 0.12), transparent 10rem),
+    linear-gradient(180deg, #fffdf9, #f8f2e7);
+}
+
+@media (max-width: 1200px) {
+  .programs-hero,
+  .program-stat-grid,
+  .assignment-grid-pro {
+    grid-template-columns: 1fr;
+  }
+}

@@ -685,6 +685,13 @@ function App() {
               t={t}
               locale={locale}
             />
+          ) : activePage === "programs" && activeModule ? (
+            <ProgramsCohortsView
+              memberships={memberships}
+              module={activeModule}
+              profile={profile}
+              locale={locale}
+            />
           ) : activeModule ? (
             <ModuleView
               memberships={memberships}
@@ -1031,6 +1038,278 @@ function ModuleView({
   );
 }
 
+function ProgramsCohortsView({
+  memberships,
+  module,
+  profile,
+  locale,
+}: {
+  memberships: TenantMembership[];
+  module: ModuleConfig;
+  profile: AppProfile | null;
+  locale: Locale;
+}) {
+  const tenantName = memberships[0]?.tenant?.name ?? (locale === "vi" ? "Doanh nghiệp hiện tại" : "Current tenant");
+  const ownerName = profile?.full_name ?? (locale === "vi" ? "Quản trị chương trình" : "Program owner");
+  const heading = locale === "vi" ? "Danh mục chương trình và cohort ở đẳng cấp vận hành" : "Programs and cohorts in an executive-grade operating view";
+  const summary =
+    locale === "vi"
+      ? "Màn này được dựng như phòng điều phối triển khai: nhìn rõ danh mục chương trình, cohort đang chạy, người phụ trách và cột mốc cần chốt."
+      : "This view is designed like a delivery command room: you can scan programs, live cohorts, ownership, and next milestones at a glance.";
+
+  const spotlight = {
+    code: locale === "vi" ? "P-LEAD-2026" : "P-LEAD-2026",
+    name: locale === "vi" ? "Lãnh đạo dẫn dắt chuyển đổi" : "Leadership for transformation",
+    customer: tenantName,
+    phase: locale === "vi" ? "Đang triển khai" : "In delivery",
+    timeline: locale === "vi" ? "06 tuần | 3 cohort | 18 coachee" : "6 weeks | 3 cohorts | 18 coachees",
+    objective:
+      locale === "vi"
+        ? "Tăng năng lực dẫn dắt cho nhóm quản lý nòng cốt, đồng bộ coaching, theo dõi đầu ra và nhịp triển khai từng cohort."
+        : "Strengthen leadership capability for core managers while aligning coaching cadence, outputs, and cohort-level execution.",
+    nextMilestone: locale === "vi" ? "Khóa cohort miền Nam và chốt phân công reviewer" : "Lock South cohort and finalize reviewer assignment",
+  };
+
+  const stats = locale === "vi"
+    ? [
+        { value: "03", label: "chương trình ưu tiên", note: "1 đang active, 2 đang chuẩn bị" },
+        { value: "07", label: "cohort triển khai", note: "trải theo 3 khu vực và 2 cấp quản lý" },
+        { value: "12", label: "vai trò phụ trách", note: "coach chính, hỗ trợ, reviewer, điều phối" },
+      ]
+    : [
+        { value: "03", label: "priority programs", note: "1 active, 2 preparing" },
+        { value: "07", label: "delivery cohorts", note: "spanning 3 regions and 2 leadership levels" },
+        { value: "12", label: "assignment roles", note: "lead, support, reviewer, coordinator" },
+      ];
+
+  const programCards = locale === "vi"
+    ? [
+        {
+          code: "P-LEAD-2026",
+          title: "Lãnh đạo dẫn dắt chuyển đổi",
+          status: "Active",
+          span: "Tháng 4 - Tháng 6",
+          audience: "Quản lý cấp trung",
+          note: "Đã chốt template, đang đẩy session mở màn cho 3 cohort.",
+        },
+        {
+          code: "P-OPS-2026",
+          title: "Vận hành tích hợp sau sáp nhập",
+          status: "Draft",
+          span: "Tháng 5 - Tháng 7",
+          audience: "Khối vận hành liên vùng",
+          note: "Đợi phê duyệt objective và danh sách đơn vị tham gia.",
+        },
+        {
+          code: "P-HIPO-2026",
+          title: "HiPo acceleration track",
+          status: "Paused",
+          span: "Q3/2026",
+          audience: "Nguồn cán bộ kế cận",
+          note: "Tạm dừng để rà lại phương pháp và chỉ số theo dõi đầu ra.",
+        },
+      ]
+    : [
+        {
+          code: "P-LEAD-2026",
+          title: "Leadership for transformation",
+          status: "Active",
+          span: "Apr - Jun",
+          audience: "Middle management",
+          note: "Template is locked and kickoff sessions are rolling across 3 cohorts.",
+        },
+        {
+          code: "P-OPS-2026",
+          title: "Post-merger operating integration",
+          status: "Draft",
+          span: "May - Jul",
+          audience: "Cross-regional operations",
+          note: "Waiting for final objective sign-off and participating unit list.",
+        },
+        {
+          code: "P-HIPO-2026",
+          title: "HiPo acceleration track",
+          status: "Paused",
+          span: "Q3/2026",
+          audience: "Succession pipeline",
+          note: "Paused while the team revalidates the method and output tracking design.",
+        },
+      ];
+
+  const cohortCards = locale === "vi"
+    ? [
+        { name: "Cohort Bắc 01", lead: "Coach chính: Mai Anh", size: "6 coachee", phase: "Kickoff tuần 2", unit: "Khối điều hành" },
+        { name: "Cohort Trung 01", lead: "Coach chính: Đức Long", size: "5 coachee", phase: "Pre-work đã gửi", unit: "Khối kinh doanh" },
+        { name: "Cohort Nam 01", lead: "Coach chính: Bảo Nhi", size: "7 coachee", phase: "Đang chốt reviewer", unit: "Khối vận hành" },
+      ]
+    : [
+        { name: "North Cohort 01", lead: "Lead coach: Mai Anh", size: "6 coachees", phase: "Kickoff in week 2", unit: "Executive division" },
+        { name: "Central Cohort 01", lead: "Lead coach: Duc Long", size: "5 coachees", phase: "Pre-work sent", unit: "Commercial division" },
+        { name: "South Cohort 01", lead: "Lead coach: Bao Nhi", size: "7 coachees", phase: "Reviewer alignment in progress", unit: "Operations division" },
+      ];
+
+  const assignments = locale === "vi"
+    ? [
+        { role: "Program owner", person: ownerName, focus: "Chốt nhịp vận hành và quyết định escalations" },
+        { role: "Lead coach cluster", person: "Mai Anh, Đức Long, Bảo Nhi", focus: "Điều phối chất lượng session và phản hồi cohort" },
+        { role: "Reviewer lane", person: "Khánh Linh, Minh Quân", focus: "Duyệt output, giữ chuẩn đầu ra giữa các cohort" },
+      ]
+    : [
+        { role: "Program owner", person: ownerName, focus: "Own cadence, escalation, and steering decisions" },
+        { role: "Lead coach cluster", person: "Mai Anh, Duc Long, Bao Nhi", focus: "Coordinate session quality and cohort-level feedback" },
+        { role: "Reviewer lane", person: "Khanh Linh, Minh Quan", focus: "Review outputs and keep quality consistent across cohorts" },
+      ];
+
+  const timeline = locale === "vi"
+    ? [
+        { label: "Tuần 1", detail: "Khóa danh sách coachee và mapping cohort" },
+        { label: "Tuần 2", detail: "Kickoff cohort, gửi pre-work, chốt lịch session 1" },
+        { label: "Tuần 3-4", detail: "Theo dõi output đầu tiên và điều phối reviewer" },
+        { label: "Tuần 5-6", detail: "Tổng kết learning, action plan và nhịp báo cáo" },
+      ]
+    : [
+        { label: "Week 1", detail: "Lock coachee roster and cohort mapping" },
+        { label: "Week 2", detail: "Kick off cohorts, send pre-work, finalize session 1 schedule" },
+        { label: "Week 3-4", detail: "Track first outputs and route reviewer coverage" },
+        { label: "Week 5-6", detail: "Wrap learning, action plans, and reporting rhythm" },
+      ];
+
+  return (
+    <div className="page-stack programs-view">
+      <section className="programs-hero">
+        <div className="programs-hero-copy">
+          <div className="hero-eyebrow">{module.eyebrow}</div>
+          <h1 className="hero-title programs-title">{heading}</h1>
+          <p className="hero-copy">{summary}</p>
+        </div>
+
+        <div className="program-spotlight-card">
+          <div className="program-spotlight-top">
+            <span className="spotlight-code">{spotlight.code}</span>
+            <span className="spotlight-phase">{spotlight.phase}</span>
+          </div>
+          <h3>{spotlight.name}</h3>
+          <p>{spotlight.objective}</p>
+          <div className="spotlight-meta">{spotlight.customer}</div>
+          <div className="spotlight-meta">{spotlight.timeline}</div>
+          <div className="spotlight-next">{spotlight.nextMilestone}</div>
+        </div>
+      </section>
+
+      <section className="program-stat-grid">
+        {stats.map((item) => (
+          <article key={item.label} className="program-stat-card">
+            <div className="program-stat-value">{item.value}</div>
+            <div className="program-stat-label">{item.label}</div>
+            <div className="program-stat-note">{item.note}</div>
+          </article>
+        ))}
+      </section>
+
+      <section className="two-column programs-layout">
+        <div className="panel">
+          <div className="panel-header">
+            <div>
+              <div className="panel-eyebrow">{locale === "vi" ? "Portfolio chương trình" : "Program portfolio"}</div>
+              <h2 className="panel-title">{locale === "vi" ? "Bức tranh triển khai theo chương trình" : "Delivery view by program"}</h2>
+            </div>
+          </div>
+
+          <div className="program-card-grid">
+            {programCards.map((card) => (
+              <article key={card.code} className="program-portfolio-card">
+                <div className="program-portfolio-top">
+                  <span className="spotlight-code">{card.code}</span>
+                  <span className={`program-badge is-${card.status.toLowerCase()}`}>{card.status}</span>
+                </div>
+                <h3>{card.title}</h3>
+                <div className="program-portfolio-meta">{card.span}</div>
+                <div className="program-portfolio-meta">{card.audience}</div>
+                <p>{card.note}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="panel">
+          <div className="panel-header">
+            <div>
+              <div className="panel-eyebrow">{locale === "vi" ? "Cohort command board" : "Cohort command board"}</div>
+              <h2 className="panel-title">{locale === "vi" ? "Cohort đang chạy" : "Live cohorts"}</h2>
+            </div>
+          </div>
+
+          <div className="cohort-stack">
+            {cohortCards.map((cohort) => (
+              <article key={cohort.name} className="cohort-card-pro">
+                <div className="cohort-card-head">
+                  <h3>{cohort.name}</h3>
+                  <span>{cohort.size}</span>
+                </div>
+                <div className="cohort-line">{cohort.lead}</div>
+                <div className="cohort-line">{cohort.unit}</div>
+                <div className="cohort-phase">{cohort.phase}</div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="panel">
+        <div className="panel-header">
+          <div>
+            <div className="panel-eyebrow">{locale === "vi" ? "Assignment view" : "Assignment view"}</div>
+            <h2 className="panel-title">{locale === "vi" ? "Người phụ trách và lane vận hành" : "Owners and operating lanes"}</h2>
+          </div>
+        </div>
+
+        <div className="assignment-grid-pro">
+          {assignments.map((assignment) => (
+            <article key={assignment.role} className="assignment-card-pro">
+              <div className="assignment-role">{assignment.role}</div>
+              <h3>{assignment.person}</h3>
+              <p>{assignment.focus}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="two-column programs-layout">
+        <div className="panel">
+          <div className="panel-header">
+            <div>
+              <div className="panel-eyebrow">{locale === "vi" ? "Nhịp triển khai" : "Delivery rhythm"}</div>
+              <h2 className="panel-title">{locale === "vi" ? "Timeline điều phối" : "Execution timeline"}</h2>
+            </div>
+          </div>
+
+          <div className="timeline program-timeline">
+            {timeline.map((item) => (
+              <div key={item.label} className="timeline-item">
+                <div className="timeline-dot is-active" />
+                <div>
+                  <div className="timeline-title">{item.label}</div>
+                  <div className="timeline-body">{item.detail}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="panel program-readiness-panel">
+          <div className="panel-eyebrow">{locale === "vi" ? "Khóa quyết định" : "Decision lock"}</div>
+          <h2 className="panel-title">{locale === "vi" ? "Những gì cần chốt để code CRUD thật" : "What to lock before real CRUD"}</h2>
+          <div className="checklist compact">
+            <ChecklistItem text={locale === "vi" ? "Chốt fields bắt buộc khi tạo chương trình: module, customer, objective, timeline, confidentiality." : "Lock required program fields: module, customer, objective, timeline, confidentiality."} />
+            <ChecklistItem text={locale === "vi" ? "Chốt rules tạo cohort: scope unit, lịch, quota coachee, coach lead." : "Lock cohort rules: scope unit, schedule, coachee quota, lead coach."} />
+            <ChecklistItem text={locale === "vi" ? "Chốt assignment matrix: ai được làm lead, support, reviewer, coordinator." : "Lock the assignment matrix: who can serve as lead, support, reviewer, coordinator."} />
+            <ChecklistItem text={locale === "vi" ? "Sau bước này có thể làm luôn danh sách, chi tiết và form tạo mới." : "After this, we can build list, detail, and create flows immediately."} />
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
 function ChecklistItem({ text }: { text: string }) {
   return (
     <div className="check-item">
@@ -1170,3 +1449,5 @@ function normalizeSupabaseError(error: unknown, t: Dictionary, fallback: string)
 }
 
 export default App;
+
+
