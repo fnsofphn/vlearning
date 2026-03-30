@@ -1,0 +1,12 @@
+node_modules
+dist
+.DS_Store
+.env
+.env.local
+*.log
+coverage
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
+tmp-*.txt
+vlearning-tms-full (1).html
