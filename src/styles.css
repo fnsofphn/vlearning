@@ -741,3 +741,240 @@ button {
     align-items: flex-start;
   }
 }
+
+.loading-shell,
+.auth-shell {
+  min-height: 100vh;
+  padding: 24px;
+  display: grid;
+  place-items: center;
+}
+
+.loading-card,
+.auth-card {
+  width: min(1120px, 100%);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: rgba(255, 253, 249, 0.94);
+  box-shadow: var(--shadow-md);
+}
+
+.loading-card {
+  padding: 32px;
+}
+
+.auth-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(340px, 460px);
+  overflow: hidden;
+}
+
+.auth-showcase {
+  position: relative;
+  padding: 36px;
+  background:
+    radial-gradient(circle at top right, rgba(201, 168, 76, 0.16), transparent 16rem),
+    linear-gradient(135deg, var(--navy), #20355d 64%, #31497a);
+  color: white;
+}
+
+.auth-showcase::before {
+  content: "";
+  position: absolute;
+  right: -24px;
+  bottom: -24px;
+  width: 180px;
+  height: 180px;
+  border-radius: 999px;
+  background: rgba(201, 168, 76, 0.08);
+}
+
+.auth-copy {
+  max-width: 56ch;
+}
+
+.auth-badges,
+.auth-switch,
+.sidebar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.auth-badges,
+.auth-list,
+.auth-meta-grid,
+.sidebar-actions {
+  margin-top: 18px;
+}
+
+.auth-badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.auth-list {
+  display: grid;
+  gap: 10px;
+}
+
+.auth-list-item,
+.small-note {
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.6;
+}
+
+.small-note {
+  margin-top: 8px;
+  color: var(--ink-soft);
+}
+
+.auth-form-panel {
+  padding: 32px;
+  background: var(--white);
+}
+
+.switch-button {
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, #fffdf9, #f8f1e8);
+  color: var(--ink-soft);
+}
+
+.switch-button.is-active {
+  border-color: rgba(164, 16, 52, 0.2);
+  background: var(--crimson-soft);
+  color: var(--crimson);
+  font-weight: 700;
+}
+
+.auth-form,
+.account-grid,
+.membership-list {
+  display: grid;
+  gap: 14px;
+}
+
+.auth-form {
+  margin-top: 18px;
+}
+
+.field-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.field-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 700;
+}
+
+.field-input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+}
+
+.field-input:focus {
+  outline: 2px solid rgba(164, 16, 52, 0.16);
+  border-color: rgba(164, 16, 52, 0.45);
+}
+
+.button.full,
+.sidebar-button {
+  width: 100%;
+  justify-content: center;
+  display: inline-flex;
+}
+
+.status-banner {
+  margin-bottom: 18px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  line-height: 1.6;
+}
+
+.status-banner.is-info {
+  background: var(--navy-soft);
+  border-color: rgba(27, 42, 74, 0.16);
+  color: var(--navy);
+}
+
+.status-banner.is-success {
+  background: #eaf5ee;
+  border-color: rgba(26, 104, 64, 0.18);
+  color: var(--success);
+}
+
+.status-banner.is-error {
+  background: var(--crimson-soft);
+  border-color: rgba(164, 16, 52, 0.18);
+  color: var(--crimson-dark);
+}
+
+.auth-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.membership-card,
+.empty-state {
+  padding: 16px;
+  border: 1px solid var(--line-soft);
+  border-radius: 16px;
+  background: linear-gradient(180deg, var(--white), #faf6ef);
+}
+
+.membership-title {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.membership-meta {
+  margin-top: 6px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.empty-state {
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+@media (max-width: 1200px) {
+  .auth-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .auth-shell,
+  .loading-shell {
+    padding: 16px;
+  }
+
+  .auth-showcase,
+  .auth-form-panel,
+  .loading-card {
+    padding: 24px;
+  }
+
+  .auth-meta-grid {
+    grid-template-columns: 1fr;
+  }
+}
