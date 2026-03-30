@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --crimson: #a41034;
   --crimson-dark: #7a0d26;
   --crimson-soft: #f7e7ec;
@@ -883,176 +883,302 @@ button {
   }
 }
 
-.programs-view {
+.programs-tms-view {
   gap: 18px;
 }
 
-.programs-hero {
+.tms-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--line-soft);
+}
+
+.tms-stats-row {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.9fr);
-  gap: 18px;
-  align-items: stretch;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
 }
 
-.programs-hero-copy,
-.program-spotlight-card {
-  padding: 24px 26px;
-  border-radius: 24px;
-  box-shadow: var(--shadow-md);
+.tms-stat-card {
+  position: relative;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
 }
 
-.programs-hero-copy {
-  background:
-    radial-gradient(circle at top right, rgba(201, 168, 76, 0.16), transparent 14rem),
-    linear-gradient(135deg, var(--navy), #213964 62%, #365283);
+.tms-stat-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 18px 18px 0 0;
 }
 
-.programs-title {
-  max-width: 13ch;
+.tms-stat-card.tone-crimson::before { background: var(--crimson); }
+.tms-stat-card.tone-navy::before { background: var(--navy); }
+.tms-stat-card.tone-gold::before { background: var(--gold); }
+.tms-stat-card.tone-success::before { background: var(--success); }
+
+.tms-stat-eye {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
 }
 
-.program-spotlight-card {
-  border: 1px solid rgba(201, 168, 76, 0.28);
-  background: linear-gradient(180deg, #fffdf9, #f7efe2);
-}
-
-.program-spotlight-card h3,
-.program-portfolio-card h3,
-.cohort-card-pro h3,
-.assignment-card-pro h3 {
-  margin: 14px 0 0;
+.tms-stat-value {
+  margin-top: 12px;
   font-family: "Playfair Display", Georgia, serif;
-  font-size: 1.35rem;
+  font-size: 2rem;
   color: var(--navy);
 }
 
-.program-spotlight-card p,
-.program-portfolio-card p,
-.assignment-card-pro p {
-  margin: 10px 0 0;
+.tms-stat-detail {
+  margin-top: 6px;
   color: var(--ink-soft);
-  line-height: 1.65;
+  line-height: 1.55;
 }
 
-.program-spotlight-top,
-.program-portfolio-top,
-.cohort-card-head {
+.tms-tabs-row {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  border-bottom: 2px solid var(--line-soft);
+}
+
+.tms-tab {
+  padding: 10px 16px;
+  margin-bottom: -2px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--ink-soft);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.tms-tab.is-active {
+  color: var(--crimson);
+  border-bottom-color: var(--crimson);
+}
+
+.tms-main-grid {
+  grid-template-columns: minmax(0, 1.6fr) minmax(300px, 0.9fr);
+}
+
+.tms-side-stack,
+.tms-mini-stack {
+  display: grid;
+  gap: 16px;
+}
+
+.tms-table-wrap {
+  margin-top: 18px;
+}
+
+.tms-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tms-table thead th {
+  padding: 10px 12px;
+  background: #f0eae0;
+  border-bottom: 2px solid var(--line);
+  text-align: left;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.tms-table tbody td {
+  padding: 12px;
+  border-bottom: 1px solid var(--line-soft);
+  vertical-align: middle;
+}
+
+.tms-table tbody tr:hover td {
+  background: #faf6ef;
+}
+
+.tms-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.tms-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tms-progress .pb {
+  width: 72px;
+}
+
+.tms-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.tms-badge.is-neutral {
+  background: var(--navy-soft);
+  color: var(--navy);
+}
+
+.tms-badge.is-danger {
+  background: var(--crimson-soft);
+  color: var(--crimson-dark);
+}
+
+.tms-badge.is-warn {
+  background: var(--gold-soft);
+  color: #8b6d18;
+}
+
+.tms-badge.is-success {
+  background: #eaf5ee;
+  color: var(--success);
+}
+
+.tms-cohort-grid,
+.tms-role-grid {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.tms-cohort-card,
+.tms-role-card,
+.tms-side-card {
+  padding: 16px;
+  border: 1px solid var(--line-soft);
+  border-radius: 16px;
+  background: linear-gradient(180deg, var(--white), #faf6ef);
+}
+
+.tms-cohort-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
 }
 
-.spotlight-code,
-.program-badge,
-.spotlight-phase {
-  display: inline-flex;
-  align-items: center;
-  padding: 6px 10px;
-  border-radius: 999px;
-  font-size: 0.74rem;
-  font-weight: 700;
-}
-
-.spotlight-code {
-  background: rgba(27, 42, 74, 0.08);
-  color: var(--navy);
-}
-
-.spotlight-phase {
-  background: rgba(164, 16, 52, 0.1);
-  color: var(--crimson-dark);
-}
-
-.program-badge.is-active {
-  background: rgba(26, 104, 64, 0.1);
-  color: var(--success);
-}
-
-.program-badge.is-draft,
-.program-badge.is-paused {
-  background: rgba(201, 168, 76, 0.14);
-  color: #8b6d18;
-}
-
-.spotlight-meta,
-.program-portfolio-meta,
-.cohort-line {
-  margin-top: 8px;
-  color: var(--ink-soft);
-}
-
-.spotlight-next,
-.cohort-phase {
-  margin-top: 14px;
-  padding: 12px 14px;
-  border-radius: 14px;
-  background: rgba(27, 42, 74, 0.06);
-  color: var(--navy);
-  font-weight: 600;
-}
-
-.program-stat-grid,
-.assignment-grid-pro {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.program-stat-card,
-.assignment-card-pro,
-.program-portfolio-card,
-.cohort-card-pro {
-  padding: 18px;
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  background: linear-gradient(180deg, var(--white), #faf6ef);
-  box-shadow: var(--shadow-sm);
-}
-
-.program-stat-value {
+.tms-cohort-top h3,
+.tms-role-card h3 {
+  margin: 0;
   font-family: "Playfair Display", Georgia, serif;
-  font-size: 2.2rem;
   color: var(--navy);
 }
 
-.program-stat-label {
-  margin-top: 6px;
-  font-weight: 700;
-  color: var(--ink);
-}
-
-.program-stat-note {
+.tms-cohort-meta,
+.tms-side-copy,
+.tms-role-card p {
   margin-top: 8px;
   color: var(--ink-soft);
   line-height: 1.55;
 }
 
-.program-card-grid,
-.cohort-stack {
-  display: grid;
-  gap: 14px;
-  margin-top: 18px;
+.tms-cohort-state {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(27, 42, 74, 0.06);
+  color: var(--navy);
+  font-weight: 600;
 }
 
-.assignment-role {
-  font-size: 0.76rem;
+.tms-side-role,
+.tms-role-title {
+  font-size: 0.74rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--gold);
 }
 
-.program-readiness-panel {
-  background:
-    radial-gradient(circle at top right, rgba(201, 168, 76, 0.12), transparent 10rem),
-    linear-gradient(180deg, #fffdf9, #f8f2e7);
+.tms-side-person {
+  margin-top: 8px;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.tms-bottom-grid {
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 1fr);
+}
+
+.tms-pipeline {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.tms-pipeline-step {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--white);
+}
+
+.tms-pipeline-step.is-done {
+  background: #eaf5ee;
+  border-color: rgba(26, 104, 64, 0.2);
+}
+
+.tms-pipeline-step.is-active {
+  background: var(--gold-soft);
+  border-color: rgba(201, 168, 76, 0.3);
+}
+
+.tms-pipeline-step.is-risk {
+  background: var(--crimson-soft);
+  border-color: rgba(164, 16, 52, 0.2);
+}
+
+.tms-pipeline-step.is-pending {
+  opacity: 0.75;
+}
+
+.tms-pipeline-no {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.5rem;
+  color: var(--navy);
+}
+
+.tms-pipeline-label {
+  margin-top: 6px;
+  font-weight: 700;
+}
+
+.tms-pipeline-status {
+  margin-top: 4px;
+  color: var(--ink-soft);
 }
 
 @media (max-width: 1200px) {
-  .programs-hero,
-  .program-stat-grid,
-  .assignment-grid-pro {
+  .tms-stats-row,
+  .tms-main-grid,
+  .tms-bottom-grid,
+  .tms-pipeline {
     grid-template-columns: 1fr;
   }
 }
+
+
+

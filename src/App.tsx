@@ -1451,3 +1451,4 @@ function normalizeSupabaseError(error: unknown, t: Dictionary, fallback: string)
 export default App;
 
 
+
